@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Products;
 
 class ProductsController extends Controller
 {
@@ -15,6 +16,7 @@ class ProductsController extends Controller
     {
         return view('products');
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +36,12 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Products();
+        $product->productName = $request->input('productName');
+        $product->productStock = $request->input('productStock');
+        $product->productPrice = $request->input('productPrice');
+        $product->save();
+        
     }
 
     /**
